@@ -9,12 +9,51 @@
 <body>
     <div id="app">
         {{mensagem}}
+        <br>
+        Valor Total: {{valorTotal}}
+        <br>
+        Logado: {{logado}}
+        <br>
+        Hobbies: {{hobbies}}
+        <br>
+        Fav Hobbie: {{hobbies[1]}}
+        <br>
+        Perfil : <br>
+        Site: {{perfil.site}}
+        Cursos:  
+        <ul>
+            <li>Nome: {{perfil.cursos[0].nome}} | Carga horaria:  {{perfil.cursos[0].cargaHoraria}}</li>
+            <li>Nome: {{perfil.cursos[1].nome}} | Carga horaria:  {{perfil.cursos[1].cargaHoraria}}</li>
+        </ul>
+        
     </div>
     <script>
         options = {
             el: '#app',
             data: {
-                mensagem: 'Primeiro template controlado pelo Vue'
+                mensagem: 'Primeiro template controlado pelo Vue',
+                valorTotal: 150.47,
+                logado: false, 
+                hobbies: [
+                    'Dormir',
+                    'Jogar video game',
+                    'Treinar'
+                ],
+                perfil:{
+                    nome: 'Dhionathan Lanzoni Jobim',
+                    site: 'https://github.com/dhionathan01',
+                    idade: 23,
+                    cursos:[
+                        {
+                            nome: 'Laravel',
+                            cargaHoraria: '50 horas'
+                        },
+                        {
+                            nome: 'Banco de Dados Relacionais',
+                            cargaHoraria: '40 horas'
+                        }
+                    ]
+                }
             }
         }
         const vm = new Vue(options); // vm = ViewModel
