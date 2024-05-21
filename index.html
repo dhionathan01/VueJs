@@ -7,6 +7,17 @@
     <title>Document</title>
 </head>
 <body>
-    Teste Live Server
+    <div id="app">
+        {{mensagem}}
+    </div>
+    <script>
+        options = {
+            el: '#app',
+            data: {
+                mensagem: 'Primeiro template controlado pelo Vue'
+            }
+        }
+        const vm = new Vue(options); // vm = ViewModel
+    </script>
 </body>
 </html>
