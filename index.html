@@ -13,24 +13,31 @@
         .negrito{
             font-weight: bold;
         }
+        .azul{
+            background:blue
+        }
+        .verde{
+            background:green
+        }
     </style>
 </head>
 <body>
     <div id="app">
-        <a href="www.google.com.br" :href="site">Site</a>
-        <p :class="cor" class="negrito">Entendo a diretiva v-bind</p>
-        <input type="text" :placeholder="instrucaoDePreenchimento" :value="valor">
-        <input type="checkbox" :checked="check">
+      {{mensagem}} <br>
+      <input type="text" :value="mensagem" :class="teste ? 'verde'  : estilo">
+      <br>
+      {{4 + 4}}
+      <br>
+
+      <input type="text" :value="4 + 4">
     </div>
     <script>
         options = {
             el: '#app',
             data: {
-              site: 'https://github.com/dhionathan01',
-              cor: 'blue',
-              instrucaoDePreenchimento: ' Placeholder - Diretiva v-bind',
-              valor: 'Entendo a diretiva v-bind',
-              check: true
+             mensagem: 'Expressão',
+             estilo: 'azul',
+             teste: true
             },
             methods: {
                 
