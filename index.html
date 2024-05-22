@@ -16,27 +16,34 @@
       <br>
       {{dividir()}}
       <br>
-      {{numeroAleatorio()}}
     </div>
     <script>
         options = {
             el: '#app',
-            data: {},
+            data: {
+                n1: 10,
+                n2: 5
+            },
             methods: {
                 somar : function somar(){// convencional
-                    return 4 + 2;
+                    return this.n1 + this.n2;
                 },
                 subtrair: function (){//anônima
-                    return 4 - 2;
+                    return this.n1 - this.n2;
                 },
                 multiplicar: () => {// arrow function
-                    return 4 * 2;
+                    return this.n1 * this.n2;//Não funciona devido ao contexto léxico e retorna NAN
+                    // Arrow functions não são adequadas para criação de methods pq ela n faz referência ao escopo do objeto e sim ao contexto global ou de função
                 },
                 dividir(){ // forma enxuta de definir os parede de chave/valor
-                    return 4/2
-                },
-                numeroAleatorio: function numeroAleatorio(){
-                    return Math.random();
+                    let f = () => {
+                        console.log('****');
+                        return 'Teste';
+                    }
+                    console.log(f());
+                    console.log(this);
+
+                    return this.n1/this.n2
                 }
             }
         }
