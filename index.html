@@ -23,21 +23,19 @@
 </head>
 <body>
     <div id="app">
-      {{mensagem}} <br>
-      <input type="text" :value="mensagem" :class="teste ? 'verde'  : estilo">
-      <br>
-      {{4 + 4}}
-      <br>
-
-      <input type="text" :value="4 + 4">
+        <input type="text"v-on:keyup="imprimirTexto()">
+        <button v-on:click="mensagemAlerta()">Botão</button>
     </div>
     <script>
         options = {
             el: '#app',
             data: {
-             mensagem: 'Expressão',
-             estilo: 'azul',
-             teste: true
+                imprimirTexto(){
+                    console.log('Teste')
+               },
+               mensagemAlerta(){
+                alert('Mensagem de alerta')
+               }
             },
             methods: {
                 
