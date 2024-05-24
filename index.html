@@ -19,29 +19,56 @@
         .verde{
             background:green
         }
+        .branco{
+            background:branco
+        }
+        .vermelho{
+            background: red
+        }
+        .borda{
+            border: 1px solid;
+        }
+        .div-principal{
+            width: 200px;
+            height: 200px;
+        }
+        .div-comum{
+            width: 50px;
+            height: 50px;
+            display: inline-block;
+        }
     </style>
 </head>
 <body>
     <div id="app">
-        <input type="text" @keyup="imprimirTexto('Enviado parâmetro', 6, xyz)">
-        <button @click="mensagemAlerta($event, 'texto', 100)">Botão</button>
+        <div class="borda div-principal" :class="cor">
+            Cor: {{cor}}
+            <br>
+            Posição X do Mouse: {{posicaoX}}
+            Posicao Y do Mouse: {{posicaoY}}
+        </div>
+        <hr>
+        <div @click="mudarCor('verde')" class="borda div-comum"></div>
+        <div @mouseover="mudarCor('azul')" @mouseout="mudarCor('vermelho')" class="borda div-comum"></div>
+        <div class="borda div-comum" @mousemove="coordenadas($event)"></div>
     </div>
     <script>
         options = {
             el: '#app',
             data: {
-               xyz: true
+               cor: 'branco',
+               posicaoX: 0,
+               posicaoY:0,
             },
             methods: {
-                imprimirTexto(texto, number, xyz){
-                    console.log(texto)
-                    console.log(number)
-                    console.log(xyz)
-                    console.log(this.xyz)
+                mudarCor(c){
+                    this.cor = c;
+                    console.log(c)
                 },
-                mensagemAlerta(event,texto, number){
-                    console.log(event, texto, number)
-                    alert('Mensagem de alerta')
+                coordenadas(e){
+                    this.posicaoX = e.clientX;
+                    this.posicaoY = e.clientY;
+
                 }
             }
         }
