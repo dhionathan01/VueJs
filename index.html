@@ -23,22 +23,25 @@
 </head>
 <body>
     <div id="app">
-        <input type="text" @keyup="imprimirTexto()">
+        <input type="text" @keyup="imprimirTexto('Enviado parâmetro', 6, xyz)">
         <button @click="mensagemAlerta()">Botão</button>
     </div>
     <script>
         options = {
             el: '#app',
             data: {
-                imprimirTexto(){
-                    console.log('Teste')
-               },
-               mensagemAlerta(){
-                alert('Mensagem de alerta')
-               }
+               xyz: true
             },
             methods: {
-                
+                imprimirTexto(texto, number, xyz){
+                    console.log(texto)
+                    console.log(number)
+                    console.log(xyz)
+                    console.log(this.xyz)
+                },
+                mensagemAlerta(){
+                    alert('Mensagem de alerta')
+                }
             }
         }
         const vm = new Vue(options); // vm = ViewModel
