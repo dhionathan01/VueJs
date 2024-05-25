@@ -6,86 +6,22 @@
     <script src="./vue.js"></script>
     <title>Document</title>
     <style>
-        .blue {
-            color: blue;
-        }
 
-        .negrito{
-            font-weight: bold;
-        }
-        .azul{
-            background:blue
-        }
-        .verde{
-            background:green
-        }
-        .branco{
-            background:branco
-        }
-        .vermelho{
-            background: red
-        }
-        .borda{
-            border: 1px solid;
-        }
-        .div-principal{
-            width: 200px;
-            height: 200px;
-        }
-        .div-comum{
-            width: 50px;
-            height: 50px;
-            display: inline-block;
-        }
     </style>
 </head>
 <body>
    <!--  .prevent na diretiva v-on "@" impede o comportamenteo padrão -->
     <div id="app">
-        <a href="https://github.com/dhionathan01"
-            target="_blank"
-            v-on:click.prevent ="previnirComportamenteoPadrao($event)">
-        Link
-    </a>
-    <br> 
-    Mensagem: {{msg}}
-    <hr>
-   <!--  .once na diretiva v-on "@" faz com que o método seja executado uma unica vez -->
-    <button @click.once="executarUmaVez()">Botão</button>
-    <p>Cliques: {{cliques}}</p>
-    <hr>
-    <!-- A diretiva prevent seguida do once, impede que  o atributo seja enviado apenas uma vez -->
-    <form action=""@submit.prevent.once="previnirUmaVez()">
-        <button type="submit">Enviar</button>
-    </form>
-    <p>Formulário: {{formulario}}</p>
-    <hr>
-    <!--  O valor passado seguido do keyup defini qual tecla deve ser apertada para que o metodo seja chamado -->
-    <input type="text" @keyup.Shift.Enter="capturandoTeclas($event)">
-    <p>Teclas: {{teclas}}</p>
+       
     </div>
     <script>
         options = {
             el: '#app',
             data: {
-                msg: '',
-                cliques: 0,
-                formulario: '',
-                teclas:''
+               
             },
             methods: {
-                previnirComportamenteoPadrao(event){
-                    this.msg = 'Comportamenteo padrão ativado'
-                },
-                executarUmaVez(){
-                    this.cliques++
-                },
-                previnirUmaVez(){
-                    this.formulario = "Previnindo o comportameno padrão";
-                },
-                capturandoTeclas(event){
-                    this.teclas = "Modificadores encadeados com sucesso!";
-                }
+        
             }
         }
         const vm = new Vue(options); // vm = ViewModel
