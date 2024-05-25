@@ -40,35 +40,51 @@
     </style>
 </head>
 <body>
+   <!--  .prevent na diretiva v-on "@" impede o comportamenteo padrão -->
     <div id="app">
-        <div class="borda div-principal" :class="cor">
-            Cor: {{cor}}
-            <br>
-            Posição X do Mouse: {{posicaoX}}
-            Posicao Y do Mouse: {{posicaoY}}
-        </div>
-        <hr>
-        <div @click="mudarCor('verde')" class="borda div-comum"></div>
-        <div @mouseover="mudarCor('azul')" @mouseout="mudarCor('vermelho')" class="borda div-comum"></div>
-        <div class="borda div-comum" @mousemove="coordenadas($event)"></div>
+        <a href="https://github.com/dhionathan01"
+            target="_blank"
+            v-on:click.prevent ="previnirComportamenteoPadrao($event)">
+        Link
+    </a>
+    <br> 
+    Mensagem: {{msg}}
+    <hr>
+   <!--  .once na diretiva v-on "@" faz com que o método seja executado uma unica vez -->
+    <button @click.once="executarUmaVez()">Botão</button>
+    <p>Cliques: {{cliques}}</p>
+    <hr>
+    <!-- A diretiva prevent seguida do once, impede que  o atributo seja enviado apenas uma vez -->
+    <form action=""@submit.prevent.once="previnirUmaVez()">
+        <button type="submit">Enviar</button>
+    </form>
+    <p>Formulário: {{formulario}}</p>
+    <hr>
+    <!--  O valor passado seguido do keyup defini qual tecla deve ser apertada para que o metodo seja chamado -->
+    <input type="text" @keyup.Shift.Enter="capturandoTeclas($event)">
+    <p>Teclas: {{teclas}}</p>
     </div>
     <script>
         options = {
             el: '#app',
             data: {
-               cor: 'branco',
-               posicaoX: 0,
-               posicaoY:0,
+                msg: '',
+                cliques: 0,
+                formulario: '',
+                teclas:''
             },
             methods: {
-                mudarCor(c){
-                    this.cor = c;
-                    console.log(c)
+                previnirComportamenteoPadrao(event){
+                    this.msg = 'Comportamenteo padrão ativado'
                 },
-                coordenadas(e){
-                    this.posicaoX = e.clientX;
-                    this.posicaoY = e.clientY;
-
+                executarUmaVez(){
+                    this.cliques++
+                },
+                previnirUmaVez(){
+                    this.formulario = "Previnindo o comportameno padrão";
+                },
+                capturandoTeclas(event){
+                    this.teclas = "Modificadores encadeados com sucesso!";
                 }
             }
         }
