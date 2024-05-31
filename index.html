@@ -12,25 +12,31 @@
 <body>
    <!--  .prevent na diretiva v-on "@" impede o comportamenteo padrão -->
     <div id="app">
-        <p v-once>Saldo Inicial: {{saldo}}</p>
-        <p>Saldo Atualizado: {{saldo}}</p>
-        <input type="text" name="valor" id="valor">
-        <button @click="creditar()">Creditar</button>
-        <button @click="debitar()">Debitar</button>
+        <h3>Exemplo com Double mustache {{}}</h3>
+        <ul>
+            <li v-for="curso in cursos">{{curso}}</li>
+        </ul>
+        <h3>Exemplo com v-text</h3>
+        <ul>
+            <li v-for="curso in cursos" v-text="curso"></li>
+        </ul>
+        <h3>Exemplo recuperando indices</h3>
+        <ul>
+            <li v-for="(curso, chave) in cursos">{{chave}} - {{curso}}</li>
+        </ul>
+        <h3>Exemplo recuperando indices v-text</h3>
+        <ul>
+            <li v-for="(curso, chave) in cursos" v-text="chave+' - '+ curso"></li>
+        </ul>
     </div>
     <script>
         options = {
             el: '#app',
             data: {
-              saldo: 1100
+                cursos: ['Laravel', 'Web Completo', 'Banco de Dados', 'Solid', 'Angular']
             },
             methods: {
-                creditar(){
-                    this.saldo += parseFloat(valor.value);
-                },
-                debitar(){
-                    this.saldo -= parseFloat(valor.value);
-                },
+                
             }
         }
         const vm = new Vue(options); // vm = ViewModel
