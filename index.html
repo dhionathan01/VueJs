@@ -12,6 +12,9 @@
 <body>
    <!--  .prevent na diretiva v-on "@" impede o comportamenteo padrão -->
     <div id="app">
+        <ul>
+            <li v-for="n in 10">{{n}}</li>
+        </ul>
         <h3>Exemplo recuperando indices v-text</h3>
         <ul>
             <li v-for="(curso, chave) in cursos" v-text="chave+' - '+ curso"></li>
