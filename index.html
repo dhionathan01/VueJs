@@ -13,6 +13,12 @@
    <!--  .prevent na diretiva v-on "@" impede o comportamenteo padrão -->
     <div id="app">
         <ul>
+            <li v-for="c in comentarios">{{c.comentario}}</li>
+        </ul>
+        <button @click="adicionarElemento">Adicionar</button>
+        <button @click="removerElemento">Remover</button>
+        <button @click="modificarElemento">Atualizar</button>
+        <ul>
             <li v-for="n in 10">{{n}}</li>
         </ul>
         <h3>Exemplo recuperando indices v-text</h3>
@@ -69,6 +75,11 @@
         options = {
             el: '#app',
             data: {
+                comentarios : [
+                    {id:1, comentario: 'Comentário 1'},
+                    {id:2, comentario: 'Comentário 2'},
+                    {id:3, comentario: 'Comentário 3'}
+                ],
                 cursos: ['Laravel', 'Web Completo', 'Banco de Dados', 'Solid', 'Angular'],
                 cursos2:{
                     1000: {titulo: 'Laravel', descricao: 'Domine o framework PHP mais poderoso do mundo'},
@@ -92,6 +103,19 @@
                     misturado[1] = this.publicacoes[0];
                     misturado[2] = this.publicacoes[1];
                     this.publicacoes = misturado;
+                },
+                adicionarElemento(){
+                    // Feito dessa maneira o vue não observa o elemento
+                    /* this.comentarios[3] = {id: 4, comentario: 'Novo comentário'}
+                    console.log(this.comentarios) */
+                    // Ao utilizar o push ele se torna reativo
+                    this.comentarios.push({id: 4, comentario: 'Novo comentário'})
+                },
+                removerElemento(){
+                    this.comentarios.pop();
+                },
+                modificarElemento(){
+                    this.$set(this.comentarios, 1, {id: 2, comentario: 'Comentário Atualizado'})
                 }
                 
             }
