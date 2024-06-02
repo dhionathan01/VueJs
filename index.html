@@ -10,17 +10,35 @@
 </head>
 <body>
     <div id="app">
-       
+       <span>Paciente:</span> <input type="text" v-model="paciente">
+       <br>
+       <ul>
+            <li v-for="p in lista">{{p.nome}}, {{p.idade}}</li>
+       </ul>
     </div>
     <script>
         options = {
             el: '#app',
             data: {
-               
+               paciente: '',
+               pacientes: [
+                    {nome: 'Dhionathan Jobim', idade: 23},
+                    {nome: 'Douglas Silva', idade: 45},
+                    {nome: 'Doroteia Araujo', idade: 65},
+                    {nome: 'Daiane Nascimento', idade: 32},
+                    {nome: 'Marcos Canedo', idade: 21},
+                    {nome: 'Jorge Sant Ana', idade: 32},
+                    {nome: 'Júnior Silva', idade: 55},
+               ],
+               lista:[]
             },
-            computed:{
-            },
-            methods: {
+            computed:{},
+            methods:{},
+            watch:{
+                paciente(valorNovo, valorAntigo){
+                    console.log(valorNovo)
+                    this.lista = (this.pacientes.filter(p => p.nome.match(valorNovo)))
+                }
             }
         }
         const vm = new Vue(options); // vm = ViewModel
