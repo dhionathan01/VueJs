@@ -10,22 +10,6 @@
 </head>
 <body>
     <div id="app">
-        <h4>Adicionar Pacientes</h4>
-        <span>Nome:</span> <input type="text" id="inputNome"><br>
-        <span>Idade:</span> <input type="text" id="inputIdade"><br>
-        <span>Plano:</span> <input type="text" id="inputPlano"><br>
-        <button @click="adicionarPaciente()">Adicionar</button>
-        <hr>
-        <h4>Último paciente cadastrado</h4>
-        <p v-if="pacientes.length > 0">
-           {{ultimoPaciente}}
-        </p>
-        <hr>
-        <h4>Pacientes do plano Ouro</h4>
-        <p v-for="p in pacientesPlanoOuro">{{p.nome}}</p>
-        <hr>
-        <h4>Pacientes cadastrados</h4>
-        <p v-for="p in pacientes">{{p.nome}}</p>
     </div>
     <script>
         options = {
@@ -34,26 +18,8 @@
                 pacientes: []
             },
             computed:{
-                ultimoPaciente(){
-                    let key = this.pacientes.length - 1;
-                    let txt = '';
-                    txt += `Paciente ${this.pacientes[key].nome},` ;
-                    txt += `Idade ${this.pacientes[key].idade},` ;
-                    txt += `Plano ${this.pacientes[key].plano}` ;
-                    return txt;
-                },
-                pacientesPlanoOuro(){
-                    return this.pacientes.filter(item => item.plano == 'Ouro');
-                }
             },
             methods: {
-                adicionarPaciente(){
-                    this.pacientes.push({
-                        nome: inputNome.value,
-                        idade: inputIdade.value,
-                        plano: inputPlano.value,
-                    })
-                }
             }
         }
         const vm = new Vue(options); // vm = ViewModel
