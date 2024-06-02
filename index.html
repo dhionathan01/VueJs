@@ -10,15 +10,22 @@
 </head>
 <body>
     <div id="app">
+        {{paciente}} <br>
+       <!--  <input type="text" v-bind:value="paciente" v-on:keyup="setPaciente($event)"> -->
+       <input type="text" v-model="paciente">
     </div>
     <script>
         options = {
             el: '#app',
             data: {
+                paciente: 'Dhionathan'
             },
             computed:{
             },
             methods: {
+                setPaciente(e){
+                    this.paciente = e.target.value
+                }
             }
         }
         const vm = new Vue(options); // vm = ViewModel
